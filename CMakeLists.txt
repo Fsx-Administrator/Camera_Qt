@@ -72,20 +72,17 @@ install(FILES
     ${QT_DLL_PATH}/bin/libstdc++-6.dll
     ${QT_DLL_PATH}/bin/libwinpthread-1.dll
     ${QT_DLL_PATH}/bin/opengl32sw.dll
-    ${QT_DLL_PATH}/bin/Qt6Concurrent.dll
     ${QT_DLL_PATH}/bin/Qt6Core.dll
     ${QT_DLL_PATH}/bin/Qt6Core5Compat.dll
-    ${QT_DLL_PATH}/bin/Qt6DataVisualization.dll
     ${QT_DLL_PATH}/bin/Qt6Gui.dll
+    ${QT_DLL_PATH}/bin/Qt6Multimedia.dll
+    ${QT_DLL_PATH}/bin/Qt6MultimediaWidgets.dll
     ${QT_DLL_PATH}/bin/Qt6Network.dll
     ${QT_DLL_PATH}/bin/Qt6OpenGL.dll
     ${QT_DLL_PATH}/bin/Qt6OpenGLWidgets.dll
-    ${QT_DLL_PATH}/bin/Qt6PrintSupport.dll
     ${QT_DLL_PATH}/bin/Qt6Qml.dll
     ${QT_DLL_PATH}/bin/Qt6QmlModels.dll
     ${QT_DLL_PATH}/bin/Qt6Quick.dll
-    ${QT_DLL_PATH}/bin/Qt6SerialPort.dll
-    ${QT_DLL_PATH}/bin/Qt6Svg.dll
     ${QT_DLL_PATH}/bin/Qt6Widgets.dll
 DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
@@ -99,6 +96,11 @@ install(FILES
     ${QT_DLL_PATH}/plugins/imageformats/qjpeg.dll
     ${QT_DLL_PATH}/plugins/imageformats/qsvg.dll
 DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/imageformats)
+
+install(FILES
+    ${QT_DLL_PATH}/plugins/multimedia/ffmpegmediaplugin.dll
+    ${QT_DLL_PATH}/plugins/multimedia/windowsmediaplugin.dll
+DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/multimedia)
 
 install(FILES
     ${QT_DLL_PATH}/plugins/platforms/qwindows.dll

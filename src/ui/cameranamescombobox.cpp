@@ -10,9 +10,9 @@ CameraNamesComboBox::CameraNamesComboBox(QWidget *parent) noexcept
     connect(&VideoInputs::instance().mediaDevices(), &QMediaDevices::videoInputsChanged, this, &CameraNamesComboBox::refresh);
     connect(this, &QComboBox::currentIndexChanged, this, [this](int index) -> void {
         if (index < 0)
-            index = 0;
-
-        Camera::instance().setDevice(itemData(index).value<QCameraDevice>());
+            Camera::instance().setDevice(QCameraDevice());
+        else
+            Camera::instance().setDevice(itemData(index).value<QCameraDevice>());
     });
 
     refresh();

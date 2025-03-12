@@ -14,7 +14,9 @@ CameraFormatsComboBox::CameraFormatsComboBox(QWidget *parent) noexcept
         Camera::instance().setFormat(itemData(index).value<QCameraFormat>());
     });
 
-    refresh(VideoInputs::instance().devices().firstKey());
+    const auto devices = VideoInputs::instance().devices();
+    if (!devices.empty())
+        refresh(devices.firstKey());
 }
 
 void CameraFormatsComboBox::refresh(const QString &cameraName) noexcept

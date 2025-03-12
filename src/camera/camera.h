@@ -41,7 +41,7 @@ public:
 
 public slots:
     void capturePicture();
-    void setDevice(const QCameraDevice &input) noexcept;
+    void setDevice(const QCameraDevice &device) noexcept;
     void setFormat(const QCameraFormat &format) noexcept;
     void startRecord();
     void stopRecord();

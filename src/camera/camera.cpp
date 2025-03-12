@@ -25,11 +25,6 @@ Camera::Camera()
     {
         checkCameraPermission();
 
-        if (QDir().exists("img"))
-            QDir().mkdir("img");
-        if (QDir().exists("video"))
-            QDir().mkdir("video");
-
         connect(this, &QCamera::errorOccurred, [this](QCamera::Error error, const QString &errorString) -> void {
             qWarning() << "ERROR :: " << errorString << ", code = " << error;
         });
@@ -44,7 +39,7 @@ Camera &Camera::instance()
 {
     try
     {
-        static std::unique_ptr<Camera> camera = std::make_unique<Camera>();
+        static auto camera = std::make_unique<Camera>();
         return *camera;
     }
     catch (const CameraException &exception)
@@ -70,20 +65,15 @@ void Camera::capturePicture()
     imageCapture_->takePicture();
 }
 
-void Camera::setDevice(const QCameraDevice &input) noexcept
+void Camera::setDevice(const QCameraDevice &device) noexcept
 {
-    try
-    {
-        if (input.isNull())
-            throw CameraException("Camera device is null");
+    setActive(false);
+    setCameraDevice(device);
+    setActive(true);
 
-        setCameraDevice(input);
-        mediaCaptureSession_->setCamera(this);
-    }
-    catch (const CameraException &exception)
-    {
-        qWarning() << exception.what();
-    }
+    device.isNull()
+        ? mediaCaptureSession_->setCamera(nullptr)
+        : mediaCaptureSession_->setCamera(this);
 }
 
 void Camera::setFormat(const QCameraFormat &format) noexcept
