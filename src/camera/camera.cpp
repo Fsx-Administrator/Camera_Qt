@@ -2,16 +2,16 @@
 
 #include "imagecapture.h"
 #include "mediarecorder.h"
-#include "videoinputs.h"
+#include "videowidget.h"
 
 #include <QApplication>
 #include <QCamera>
 #include <QDir>
 #include <QMediaCaptureSession>
-#include <QVideoWidget>
 #if QT_CONFIG(permissions)
 #include <QPermission>
 #endif
+#include <QVideoWidget>
 
 
 Camera::Camera()
@@ -51,11 +51,7 @@ Camera &Camera::instance()
 QWidget *Camera::widget() noexcept
 {
     if (widget_ == nullptr)
-    {
-        widget_ = new QVideoWidget(dynamic_cast<QWidget *>(parent()));
-        widget_->setAspectRatioMode(Qt::KeepAspectRatio);
-        mediaCaptureSession_->setVideoOutput(widget_);
-    }
+        widget_ = new VideoWidget(mediaCaptureSession_);
 
     return widget_;
 }

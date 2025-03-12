@@ -9,10 +9,9 @@
 
 class ImageCapture;
 class MediaRecorder;
-class QAudioInput;
 class QCameraDevice;
 class QMediaCaptureSession;
-class QVideoWidget;
+class VideoWidget;
 
 using Resolutuion = QSize;
 
@@ -49,10 +48,9 @@ public slots:
 private:
     void checkCameraPermission();
 
-
     QMediaCaptureSession *mediaCaptureSession_;
     ImageCapture *imageCapture_;
     MediaRecorder *mediaRecorder_;
-    QVideoWidget *widget_;
+    VideoWidget *widget_;
 
 };
