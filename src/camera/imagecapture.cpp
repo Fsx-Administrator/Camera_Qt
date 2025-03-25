@@ -10,7 +10,7 @@ ImageCapture::ImageCapture(QMediaCaptureSession *mediaSession, QObject *parent)
 {
     mediaSession->setImageCapture(this);
 
-    FileSystem::createDirection(FileSystem::defaultPngDirName());
+    FileSystem::createDir(FileSystem::defaultPngDirName());
 
     connect(this, &QImageCapture::errorOccurred, [this](int id, [[maybe_unused]] QImageCapture::Error error, const QString &errorString) -> void {
         qWarning() << id << ", " << errorString;

@@ -16,11 +16,12 @@ public:
     FileSystem &operator=(const FileSystem &) = delete;
     FileSystem &operator=(FileSystem &&) = delete;
 
-    static void createDirection(const QString &name);
+    static void createDir(const QString &name);
     [[nodiscard]] static QString defaultPngDirName();
     [[nodiscard]] static QString defaultPngFileName();
     [[nodiscard]] static QString defaultVideoDirName();
     [[nodiscard]] static QUrl defaultVideoUrl();
+    static void openDir(const QString &name);
     [[nodiscard]] static QString pwd();
 
 private:

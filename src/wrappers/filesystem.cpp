@@ -1,9 +1,11 @@
 #include "filesystem.h"
 
 #include <QDateTime>
+#include <QDesktopServices>
 #include <QDir>
 
-void FileSystem::createDirection(const QString &name)
+
+void FileSystem::createDir(const QString &name)
 {
     if (!QDir().exists(name))
         QDir().mkdir(name);
@@ -27,6 +29,11 @@ QString FileSystem::defaultVideoDirName()
 QUrl FileSystem::defaultVideoUrl()
 {
     return QUrl(_VIDEO_FILE_NAME_PATTERN_.arg(pwd(), _VIDEO_DIR_NAME_, QDateTime::currentDateTime().toString("yyyy.MM.dd hh.mm.ss.zzz")));
+}
+
+void FileSystem::openDir(const QString &name)
+{
+    QDesktopServices::openUrl(QUrl(QDir(name).absolutePath()));
 }
 
 QString FileSystem::pwd()

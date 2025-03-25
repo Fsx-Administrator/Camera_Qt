@@ -38,9 +38,11 @@ qt_add_executable(${PROJECT_NAME}
 qt_add_resources(${PROJECT_NAME} "icons"
     PREFIX "/"
     FILES
+        ${ICONS_ROOT}/picture_folder.png
         ${ICONS_ROOT}/record.png
         ${ICONS_ROOT}/stop_record.png
         ${ICONS_ROOT}/take_picture.png
+        ${ICONS_ROOT}/video_folder.png
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE

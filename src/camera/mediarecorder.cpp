@@ -11,7 +11,7 @@ MediaRecorder::MediaRecorder(QMediaCaptureSession *mediaSession, QObject *parent
     setEncodingMode(QMediaRecorder::TwoPassEncoding);
     mediaSession->setRecorder(this);
 
-    FileSystem::createDirection(FileSystem::defaultVideoDirName());
+    FileSystem::createDir(FileSystem::defaultVideoDirName());
 
     connect(this, &QMediaRecorder::errorOccurred, [this]([[maybe_unused]] QMediaRecorder::Error error, const QString &errorString) -> void {
         qWarning() << errorString;
