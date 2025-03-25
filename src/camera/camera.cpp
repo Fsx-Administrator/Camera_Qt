@@ -63,7 +63,7 @@ void Camera::capturePicture()
 
 void Camera::setDevice(const QCameraDevice &device) noexcept
 {
-    setActive(false);
+    // setActive(false);
     setCameraDevice(device);
     setActive(true);
 
