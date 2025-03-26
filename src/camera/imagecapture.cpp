@@ -3,6 +3,7 @@
 #include "filesystem.h"
 
 #include <QMediaCaptureSession>
+#include <QVideoSink>
 
 
 ImageCapture::ImageCapture(QMediaCaptureSession *mediaSession, QObject *parent)

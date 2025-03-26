@@ -2,6 +2,7 @@
 
 #include <QCamera>
 #include <QMediaCaptureSession>
+#include <QVideoSink>
 
 
 VideoWidget::VideoWidget(QMediaCaptureSession *mediaSession, QWidget *parent) noexcept

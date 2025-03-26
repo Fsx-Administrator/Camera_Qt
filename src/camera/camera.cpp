@@ -2,6 +2,7 @@
 
 #include "imagecapture.h"
 #include "mediarecorder.h"
+#include "videosink.h"
 #include "videowidget.h"
 
 #include <QApplication>
@@ -63,7 +64,6 @@ void Camera::capturePicture()
 
 void Camera::setDevice(const QCameraDevice &device) noexcept
 {
-    // setActive(false);
     setCameraDevice(device);
     setActive(true);
 

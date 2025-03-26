@@ -30,10 +30,12 @@ set(ICONS_ROOT                      icons)
 file(GLOB HEADERS ${SOURCE_ROOT}/*.h ${SOURCE_ROOT}/*/*.h)
 file(GLOB SOURCES ${SOURCE_ROOT}/*.cpp ${SOURCE_ROOT}/*/*.cpp)
 
+set(RESOURCES ${PROJECT_SOURCE_DIR}/resources.rc)
 qt_add_executable(${PROJECT_NAME}
     WIN32
     ${HEADERS}
     ${SOURCES}
+    ${RESOURCES}
 )
 qt_add_resources(${PROJECT_NAME} "icons"
     PREFIX "/"
