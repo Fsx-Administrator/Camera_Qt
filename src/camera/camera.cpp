@@ -77,7 +77,7 @@ void Camera::setFormat(const QCameraFormat &format) noexcept
     mediaRecorder_->setVideoResolution(format.resolution());
     mediaRecorder_->setVideoFrameRate(format.maxFrameRate());
     if (widget_)
-        widget_->setMinimumSize(format.resolution() * 0.5);
+        widget_->setMinimumSize(format.resolution() * 0.25);
     setCameraFormat(format);
 }
 

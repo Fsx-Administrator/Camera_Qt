@@ -2,6 +2,7 @@
 
 #include "filesystem.h"
 
+#include <QDebug>
 #include <QMediaCaptureSession>
 #include <QVideoSink>
 

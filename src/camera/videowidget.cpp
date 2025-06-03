@@ -10,6 +10,6 @@ VideoWidget::VideoWidget(QMediaCaptureSession *mediaSession, QWidget *parent) no
 {
     setAspectRatioMode(Qt::KeepAspectRatio);
     if (mediaSession->camera())
-        setMinimumSize(mediaSession->camera()->cameraFormat().resolution() * 0.5);
+        setMinimumSize(mediaSession->camera()->cameraFormat().resolution() * 0.25);
     mediaSession->setVideoOutput(this);
 }
