@@ -11,13 +11,11 @@ MediaRecorder::MediaRecorder(QMediaCaptureSession *mediaSession, QObject *parent
     setEncodingMode(QMediaRecorder::TwoPassEncoding);
     mediaSession->setRecorder(this);
 
-    FileSystem::createDir(FileSystem::defaultVideoDirName());
+    FileSystem fileSystem;
+    fileSystem.createDir(fileSystem.videoDirName());
 
     connect(this, &QMediaRecorder::errorOccurred, [this]([[maybe_unused]] QMediaRecorder::Error error, const QString &errorString) -> void {
         qWarning() << errorString;
-    });
-    connect(this, &QMediaRecorder::recorderStateChanged, [this](QMediaRecorder::RecorderState state) -> void {
-        qWarning() << state;
     });
 }
 
@@ -30,7 +28,7 @@ void MediaRecorder::startRecord() noexcept
 {
     if (!isRecording())
     {
-        setOutputLocation(FileSystem::defaultVideoUrl());
+        setOutputLocation(FileSystem{}.defaultVideoUrl());
         record();
     }
 }

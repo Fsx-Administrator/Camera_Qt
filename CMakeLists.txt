@@ -29,8 +29,9 @@ set(ICONS_ROOT                      icons)
 
 file(GLOB HEADERS ${SOURCE_ROOT}/*.h ${SOURCE_ROOT}/*/*.h)
 file(GLOB SOURCES ${SOURCE_ROOT}/*.cpp ${SOURCE_ROOT}/*/*.cpp)
-
+file(GLOB TRANSLATIONS ts/*.ts)
 set(RESOURCES ${PROJECT_SOURCE_DIR}/resources.rc)
+
 qt_add_executable(${PROJECT_NAME}
     WIN32
     ${HEADERS}
@@ -40,6 +41,8 @@ qt_add_executable(${PROJECT_NAME}
 qt_add_resources(${PROJECT_NAME} "icons"
     PREFIX "/"
     FILES
+        ${ICONS_ROOT}/choose_picture_folder.png
+        ${ICONS_ROOT}/choose_video_folder.png
         ${ICONS_ROOT}/picture_folder.png
         ${ICONS_ROOT}/record.png
         ${ICONS_ROOT}/stop_record.png

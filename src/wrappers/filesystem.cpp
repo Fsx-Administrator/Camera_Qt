@@ -3,40 +3,74 @@
 #include <QDateTime>
 #include <QDesktopServices>
 #include <QDir>
+#include <QFileDialog>
 
 
-void FileSystem::createDir(const QString &name)
+QString FileSystem::pictureDirName_ = QDir::currentPath() + "/img";
+QString FileSystem::videoDirName_ = QDir::currentPath() + "/video";
+
+FileSystem::FileSystem() {}
+
+void FileSystem::choosePictureDirName()
 {
-    if (!QDir().exists(name))
-        QDir().mkdir(name);
+    const auto dirName = QFileDialog::getExistingDirectory(
+        nullptr,
+        QObject::tr("Choose picture folder"),
+        pictureDirName_
+    );
+
+    if (dirName.isEmpty())
+        return;
+
+    pictureDirName_ = dirName;
 }
 
-QString FileSystem::defaultPngDirName()
+void FileSystem::chooseVideoDirName()
 {
-    return _PICTURES_DIR_NAME_;
+    const auto dirName = QFileDialog::getExistingDirectory(
+        nullptr,
+        QObject::tr("Choose video folder"),
+        videoDirName_
+    );
+
+    if (dirName.isEmpty())
+        return;
+
+    videoDirName_ = dirName;
 }
 
-QString FileSystem::defaultPngFileName()
+void FileSystem::createDir(const QString &name) const
 {
-    return _PNG_FILE_NAME_PATTERN_.arg(pwd(), _PICTURES_DIR_NAME_, QDateTime::currentDateTime().toString("yyyy.MM.dd hh.mm.ss.zzz"));
+    if (!QDir{}.exists(name))
+        QDir{}.mkdir(name);
 }
 
-QString FileSystem::defaultVideoDirName()
+QString FileSystem::defaultPictureFileName() const
 {
-    return _VIDEO_DIR_NAME_;
+    return _PNG_FILE_NAME_PATTERN_.arg(pictureDirName_, QDateTime::currentDateTime().toString("yyyy.MM.dd hh.mm.ss.zzz"));
 }
 
-QUrl FileSystem::defaultVideoUrl()
+QUrl FileSystem::defaultVideoUrl() const
 {
-    return QUrl(_VIDEO_FILE_NAME_PATTERN_.arg(pwd(), _VIDEO_DIR_NAME_, QDateTime::currentDateTime().toString("yyyy.MM.dd hh.mm.ss.zzz")));
+    return QUrl{_VIDEO_FILE_NAME_PATTERN_.arg(videoDirName_, QDateTime::currentDateTime().toString("yyyy.MM.dd hh.mm.ss.zzz"))};
 }
 
-void FileSystem::openDir(const QString &name)
+void FileSystem::openDir(const QString &name) const
 {
-    QDesktopServices::openUrl(QUrl(QDir(name).absolutePath()));
+    QDesktopServices::openUrl(QUrl{QDir{name}.absolutePath()});
 }
 
-QString FileSystem::pwd()
+const QString &FileSystem::pictureDirName() const
+{
+    return pictureDirName_;
+}
+
+QString FileSystem::pwd() const
 {
     return QDir::currentPath();
+}
+
+const QString &FileSystem::videoDirName() const
+{
+    return videoDirName_;
 }

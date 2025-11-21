@@ -8,26 +8,28 @@ class FileSystem
 {
 
 public:
-    FileSystem() = delete;
-    ~FileSystem() = delete;
+    FileSystem();
+    ~FileSystem() = default;
 
     FileSystem(const FileSystem &) = delete;
     FileSystem(FileSystem &&) = delete;
     FileSystem &operator=(const FileSystem &) = delete;
     FileSystem &operator=(FileSystem &&) = delete;
 
-    static void createDir(const QString &name);
-    [[nodiscard]] static QString defaultPngDirName();
-    [[nodiscard]] static QString defaultPngFileName();
-    [[nodiscard]] static QString defaultVideoDirName();
-    [[nodiscard]] static QUrl defaultVideoUrl();
-    static void openDir(const QString &name);
-    [[nodiscard]] static QString pwd();
+    void choosePictureDirName();
+    void chooseVideoDirName();
+    void createDir(const QString &name) const;
+    [[nodiscard]] QString defaultPictureFileName() const;
+    [[nodiscard]] QUrl defaultVideoUrl() const;
+    void openDir(const QString &name) const;
+    [[nodiscard]] const QString &pictureDirName() const;
+    [[nodiscard]] QString pwd() const;
+    [[nodiscard]] const QString &videoDirName() const;
 
 private:
-    static inline const QString _PICTURES_DIR_NAME_ = "img";
-    static inline const QString _VIDEO_DIR_NAME_ = "video";
-    static inline const QString _PNG_FILE_NAME_PATTERN_ = "%1/%2/%3.png";
-    static inline const QString _VIDEO_FILE_NAME_PATTERN_ = "%1/%2/%3.mp4";
+    static inline const QString _PNG_FILE_NAME_PATTERN_ = "%1/%2.png";
+    static inline const QString _VIDEO_FILE_NAME_PATTERN_ = "%1/%2.mp4";
+    static QString pictureDirName_;
+    static QString videoDirName_;
 
 };
