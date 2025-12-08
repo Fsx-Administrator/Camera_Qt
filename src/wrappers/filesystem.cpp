@@ -57,7 +57,7 @@ QUrl FileSystem::defaultVideoUrl() const
 
 void FileSystem::openDir(const QString &name) const
 {
-    QDesktopServices::openUrl(QUrl{QDir{name}.absolutePath()});
+    QDesktopServices::openUrl(QUrl::fromLocalFile(QDir{name}.absolutePath()));
 }
 
 const QString &FileSystem::pictureDirName() const
